@@ -18,32 +18,69 @@ namespace Geo;
  */
 class Search
 {
+  /**
+   * @var ArrayObject
+   */
   private $services;
+
+  /**
+   * @var array
+   */
   private $results = array();
 
+  /**
+   * Use this method to register available services
+   */
   protected function configure() {}
-  
+
+  /**
+   * Construct method can inject available services
+   *
+   * @param array $services
+   */
   public function __construct($services = array())
   {
     $this->services = new \ArrayObject($services);
     $this->configure();
   }
 
+  /**
+   * Append a new service between the registered services
+   * 
+   * @param Service $service
+   */
   public function addService(Service $service)
   {
     $this->services->append($service);
   }
 
+  /**
+   * Set results
+   * 
+   * @param array $results
+   */
   public function setResults($results)
   {
     $this->results = $results;
   }
 
+  /**
+   * Get results
+   *
+   * @return array
+   */
   public function getResults()
   {
     return $this->results;
   }
 
+  /**
+   * Query the chain of geo searching services
+   * 
+   * @param string $q
+   * @param int $service_index
+   * @param Exception $e
+   */
   public function query($q, $service_index = 0, $e = null)
   {    
     if (!isset($this->services[$service_index]))
@@ -63,6 +100,12 @@ class Search
 
   }
 
+  /**
+   * Get a specific result
+   *
+   * @param integer $index
+   * @return Geo\Location
+   */
   public function getResult($index)
   {
     if (!isset($this->results[$index]))
@@ -73,6 +116,11 @@ class Search
     return $this->results[$index];
   }
 
+  /**
+   * Get the first result
+   *
+   * @return Geo\Location
+   */
   public function getFirst()
   {
     return !isset($this->results[0])?:$this->results[0];

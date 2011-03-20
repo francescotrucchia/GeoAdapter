@@ -20,27 +20,53 @@ class Location
 {
   private $latitude;
   private $longitude;
-  
+
+  /**
+   * Set latitude
+   * 
+   * @param float $v
+   */
   public function setLatitude($v)
   {
     $this->latitude = $v;
   }
 
+  /**
+   * Get latitude
+   * 
+   * @return float
+   */
   public function getLatitude()
   {
     return $this->latitude;
   }
 
+  /**
+   * Set longitude
+   *
+   * @param float $v
+   */
   public function setLongitude($v)
   {
     $this->longitude = $v;
   }
 
+  /**
+   * Get longitude
+   *
+   * @return float
+   */
   public function getLongitude()
   {
     return $this->longitude;
   }
 
+  /**
+   * Measure the distance between this point and another point
+   * 
+   * @param Location $location
+   * @return float
+   */
   public function distance(Location $location)
   {
     $latA = deg2rad($this->latitude);

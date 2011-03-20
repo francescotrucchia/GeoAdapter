@@ -18,11 +18,20 @@ namespace Geo;
  */
 class Autoload
 {
+  /**
+   * Register the autoload method
+   */
   static public function register()
   {
     spl_autoload_register(array(new self, 'autoload'));
   }
 
+  /**
+   * Autoload classes
+   * 
+   * @param string $class_name
+   * @return mixed
+   */
   public function autoload($class_name)
   {
     if (!strstr($class_name, 'Geo'))
