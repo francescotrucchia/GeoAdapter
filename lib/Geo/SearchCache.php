@@ -20,10 +20,9 @@ class SearchCache
     
     $this->user->setAttribute('last_search', $q);
 
-    if (isset($this->cached_queries[strtolower($q)]))
+    if (isset($this->cached_queries[$q]))
     {
-      $this->search->setResults($this->cached_queries[$q]);
-      return;
+      return $this->search->setResults($this->cached_queries[$q]);
     }
     
     $this->search->query($q, $service_index, $e);
@@ -33,6 +32,11 @@ class SearchCache
   public function getFirst()
   {
     return $this->search->getFirst();
+  }
+
+  public function getCachedQueries()
+  {
+    return $this->cached_queries;
   }
 
   public function __destruct()

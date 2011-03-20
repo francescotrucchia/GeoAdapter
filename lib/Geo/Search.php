@@ -1,6 +1,24 @@
 <?php
+/**
+ * This file is part of the %package_name% package.
+ * (c) 2011 %author_name% <%author_email%>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Geo;
 
+/**
+ * Search execute geo query using different driver. The driver should be configured in configure method or they can be added
+ * with
+ *
+ * @package    symfony
+ * @subpackage action
+ * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
+ * @author     Sean Kerr <sean@code-box.org>
+ * @version    SVN: $Id: sfAction.class.php 24279 2009-11-23 15:21:18Z fabien $
+ */
 class Search
 {
   private $services;
