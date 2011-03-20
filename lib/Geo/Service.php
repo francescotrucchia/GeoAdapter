@@ -1,7 +1,21 @@
 <?php
+/**
+ * This file is part of the GeoAdapter software.
+ * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Geo;
 
+/**
+ * Service is the adapter for the external geo searching services
+ *
+ * @package    geoadapter
+ * @subpackage service
+ * @author     Francesco Trucchia <francesco@trucchia.it>
+ */
 abstract class Service
 {
   private $results;
