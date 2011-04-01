@@ -18,9 +18,9 @@ namespace Geo;
  */
 class SearchCache
 {
-  private $search;
-  private $cached_queries;
-  private $user;
+  protected $search;
+  protected $cached_queries;
+  protected $user;
   
   public function __construct(Search $search, \myUser $user)
   {
