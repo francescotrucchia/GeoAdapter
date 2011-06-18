@@ -1,6 +1,5 @@
-# GeoAdapter
+<?php
 
-<code>
 require_once(__DIR__.'/../lib/Geo/Autoload.php');
 
 Geo\Autoload::register();
@@ -34,4 +33,3 @@ echo 'Latitude: '.$location_b->getLatitude().PHP_EOL;
 echo 'Longitude: '.$location_b->getLongitude().PHP_EOL.PHP_EOL;
 
 echo 'Distance from Address1 to Address2: '.$location_a->distance($location_b).' Km'.PHP_EOL;
-</code>
