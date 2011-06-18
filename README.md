@@ -1,5 +1,8 @@
 # GeoAdapter
 
+With GeoAdapter you can find a location from an address. A location is a object with latitude and longitude attribute.
+Location object implements a method can calculate distance between two location.
+
 <pre><code>
 require_once(__DIR__.'/../lib/Geo/Autoload.php');
 
