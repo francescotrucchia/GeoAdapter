@@ -31,7 +31,7 @@ class GeoCode extends \Geo\Service
   {
     $name = urlencode($q);
     $baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
-    $data = file_get_contents("{$baseUrl}{$name}&&sensor=false");
+    $data = file_get_contents("{$baseUrl}{$name}&region={$this->region}&sensor=false");
 
     $locations = json_decode($data, true);
     return $locations['results'];

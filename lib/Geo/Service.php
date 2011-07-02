@@ -20,6 +20,8 @@ abstract class Service
 {
   private $results;
 
+  protected $region;
+
   /**
    * @param string
    * @return array
@@ -51,6 +53,11 @@ abstract class Service
     return $this->results;
   }
 
+  public function setRegion($region)
+  {
+    $this->region = $region;
+  }
+  
   public function search($q)
   {
     $this->results->exchangeArray(array());
