@@ -32,4 +32,21 @@ class LocationTest extends \PHPUnit_Framework_TestCase
   {
     $this->assertEquals('2.4321', $this->object->getLongitude());
   }
+
+  public function testDistance()
+  {
+    $this->object->setLatitude('37.5024825');
+    $this->object->setLongitude('15.0878345');
+
+    $location = $this->getMock('Geo\Location', array('getLatitude', 'getLongitude'));
+    $location->expects($this->once())
+             ->method('getLatitude')
+             ->will($this->returnValue('37.502482500000'));
+
+    $location->expects($this->once())
+             ->method('getLongitude')
+             ->will($this->returnValue('15.087834500000'));
+    
+    $this->assertEquals($this->object->distance($location), 0.00);
+  }
 }
