@@ -74,6 +74,6 @@ class Location
     $latB = deg2rad($location->getLatitude());
     $lonB = deg2rad($location->getLongitude());
 
-    return sprintf('%.2f', acos(sin($latA)*sin($latB) + cos($latA) * cos($latB) * cos($lonB - $lonA)) * 3956);
+    return sprintf('%.2f', acos(sin($latA)*sin($latB) + cos($latA) * cos($latB) * cos($lonB - $lonA)) * 6378.1370);
   }
 }
