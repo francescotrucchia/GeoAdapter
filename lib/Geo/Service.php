@@ -22,6 +22,8 @@ abstract class Service
 
   protected $region;
 
+  protected $language;
+
   /**
    * @param string
    * @return array
@@ -56,6 +58,11 @@ abstract class Service
   public function setRegion($region)
   {
     $this->region = $region;
+  }
+
+  public function setLanguage($language)
+  {
+    $this->language = $language;
   }
   
   public function search($q)

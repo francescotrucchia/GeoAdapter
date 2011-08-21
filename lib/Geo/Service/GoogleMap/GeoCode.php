@@ -23,6 +23,7 @@ class GeoCode extends \Geo\Service
     $location = new \Geo\Location;
     !isset($values['geometry']['location']['lat'])?:$location->setLatitude($values['geometry']['location']['lat']);
     !isset($values['geometry']['location']['lng'])?:$location->setLongitude($values['geometry']['location']['lng']);
+    !isset($values['formatted_address'])?:$location->setAddress($values['formatted_address']);
 
     return $location;
   }
@@ -31,7 +32,7 @@ class GeoCode extends \Geo\Service
   {
     $name = urlencode($q);
     $baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
-    $data = file_get_contents("{$baseUrl}{$name}&region={$this->region}&sensor=false");
+    $data = file_get_contents("{$baseUrl}{$name}&region={$this->region}&sensor=false&language={$this->language}");
 
     $locations = json_decode($data, true);
     return $locations['results'];

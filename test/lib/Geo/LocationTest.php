@@ -21,6 +21,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     $this->object = new Location;
     $this->object->setLatitude('1.1234');
     $this->object->setLongitude('2.4321');
+    $this->object->setAddress('via montenapoleone, Roma, Italia');
   }
 
   public function testGetLatitude()
@@ -33,6 +34,11 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals('2.4321', $this->object->getLongitude());
   }
 
+  public function testGetAddress()
+  {
+    $this->assertEquals('via montenapoleone, Roma, Italia', $this->object->getAddress());
+  }
+  
   public function testDistance()
   {
     $this->object->setLatitude('37.5024825');

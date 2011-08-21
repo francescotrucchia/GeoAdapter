@@ -20,6 +20,7 @@ class Location
 {
   private $latitude;
   private $longitude;
+  private $address;
 
   /**
    * Set latitude
@@ -59,6 +60,26 @@ class Location
   public function getLongitude()
   {
     return $this->longitude;
+  }
+
+  /**
+   * Set address
+   *
+   * @param string $address
+   */
+  public function setAddress($address)
+  {
+    $this->address = $address;
+  }
+
+  /**
+   * Get Address
+   *
+   * @return string
+   */
+  public function getAddress()
+  {
+    return $this->address;
   }
 
   /**

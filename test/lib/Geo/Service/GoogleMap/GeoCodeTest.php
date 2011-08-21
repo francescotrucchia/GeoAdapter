@@ -18,6 +18,7 @@ class GeoCodeTest extends \PHPUnit_Framework_TestCase
   public function setUp()
   {
     $this->service = new GeoCode;
+    $this->service->setLanguage('IT');
   }
 
   public function testSearch()
@@ -26,9 +27,10 @@ class GeoCodeTest extends \PHPUnit_Framework_TestCase
     $results = $this->service->getResults();
 
     $this->assertEquals('1', count($results));
-
+    
     $this->assertInstanceOf('\Geo\Location', $results['0']);
     $this->assertEquals('45.463681', $results['0']->getLatitude());
     $this->assertEquals('9.1881714', $results['0']->getLongitude());
+    $this->assertEquals('Milano, Italia', $results['0']->getAddress());
   }
 }
