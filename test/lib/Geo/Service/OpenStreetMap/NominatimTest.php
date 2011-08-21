@@ -18,6 +18,7 @@ class NominatimTest extends \PHPUnit_Framework_TestCase
   public function setUp()
   {
     $this->service = new Nominatim;
+    $this->service->setRegion('IT');
   }
 
   public function testSearch()
@@ -25,10 +26,11 @@ class NominatimTest extends \PHPUnit_Framework_TestCase
     $this->service->search('Milano');
     $results = $this->service->getResults();
 
-    $this->assertEquals('1', count($results));
+    $this->assertEquals('8', count($results));
 
     $this->assertInstanceOf('\Geo\Location', $results['0']);
     $this->assertEquals('45.466621', number_format($results['0']->getLatitude(), 6));
     $this->assertEquals('9.190617', number_format($results['0']->getLongitude(), 6));
+    $this->assertEquals('Milano, Lombardia, Italia, Europe', $results['0']->getAddress());
   }
 }
