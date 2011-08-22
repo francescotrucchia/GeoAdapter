@@ -32,21 +32,26 @@ class SearchCache
   public function query($q, $service_index = 0, $e = null)
   {
     $q = strtolower($q);
-    
-    $this->user->setAttribute('last_search', $q);
+    $this->user->setAttribute('last_query', $q);
 
-    if (isset($this->cached_queries[$q]))
+    if (!isset($this->cached_queries[$q]))
     {
-      return $this->search->setResults($this->cached_queries[$q]);
+      $this->search->query($q, $service_index, $e);
+      $this->cached_queries[$q] = $this->search->getResults();
     }
-    
-    $this->search->query($q, $service_index, $e);
-    $this->cached_queries[$q] = $this->search->getResults();
+
+    $this->search->setResults($this->cached_queries[$q]);
+    $this->user->setAttribute('last_search', $this->search->getFirst()->getAddress());
   }
 
   public function getFirst()
   {
     return $this->search->getFirst();
+  }
+
+  public function getResults()
+  {
+    return $this->search->getResults();
   }
 
   public function getCachedQueries()
