@@ -125,5 +125,15 @@ class Search
   {
     return !isset($this->results[0])?:$this->results[0];
   }
+
+  /**
+   * Return services
+   * 
+   * @return <type>
+   */
+  public function getServices()
+  {
+    return $this->services;
+  }
 }
 

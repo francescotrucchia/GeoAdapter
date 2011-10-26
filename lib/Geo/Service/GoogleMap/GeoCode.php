@@ -35,6 +35,7 @@ class GeoCode extends \Geo\Service
     $data = file_get_contents("{$baseUrl}{$name}&region={$this->region}&sensor=false&language={$this->language}");
 
     $locations = json_decode($data, true);
+    $this->status = $locations['status'];
     return $locations['results'];
   }
 }

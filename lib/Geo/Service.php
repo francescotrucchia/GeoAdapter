@@ -24,6 +24,10 @@ abstract class Service
 
   protected $language;
 
+  protected $status;
+
+  protected $service_results;
+  
   /**
    * @param string
    * @return array
@@ -64,12 +68,24 @@ abstract class Service
   {
     $this->language = $language;
   }
+
+  public function getStatus()
+  {
+    return $this->status;
+  }
+
+  public function getServiceResults()
+  {
+    return $this->service_results;
+  }
   
   public function search($q)
   {
     $this->results->exchangeArray(array());
     
     $results = $this->query($q);
+
+    $this->service_results = $results;
     
     if (!is_array($results))
     {
