@@ -22,7 +22,6 @@ class Nominatim extends Service
 {
   protected function initLocation($values)
   {
-    print_r($values);die;
     $location = new \Geo\Location;
     !isset($values['lat'])?:$location->setLatitude($values['lat']);
     !isset($values['lon'])?:$location->setLongitude($values['lon']);
