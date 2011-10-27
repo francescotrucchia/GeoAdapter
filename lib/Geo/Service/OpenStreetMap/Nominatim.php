@@ -22,6 +22,7 @@ class Nominatim extends Service
 {
   protected function initLocation($values)
   {
+    print_r($values);die;
     $location = new \Geo\Location;
     !isset($values['lat'])?:$location->setLatitude($values['lat']);
     !isset($values['lon'])?:$location->setLongitude($values['lon']);
@@ -34,7 +35,7 @@ class Nominatim extends Service
   {
     $name = urlencode($q);
     $baseUrl = 'http://nominatim.openstreetmap.org/search?format=json&q=';
-    $data = file_get_contents("{$baseUrl}{$name}&countrycodes={$this->region}&addressdetails=1");
+    $data = file_get_contents("{$baseUrl}{$name}&countrycodes={$this->region}&accept-language=it&addressdetails=1");
 
     return json_decode($data, true);
   }
