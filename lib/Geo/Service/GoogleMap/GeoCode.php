@@ -18,6 +18,9 @@ namespace Geo\Service\GoogleMap;
  */
 class GeoCode extends \Geo\Service
 {
+  protected $name = 'google geocoding';
+  protected $uri = "http://maps.googleapis.com/maps/api/geocode/json";
+  
   public function initLocation($values)
   {
     $location = new \Geo\Location;
@@ -30,9 +33,32 @@ class GeoCode extends \Geo\Service
 
   public function query($q)
   {
-    $name = urlencode($q);
-    $baseUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
-    $data = file_get_contents("{$baseUrl}{$name}&region={$this->region}&sensor=false&language={$this->language}");
+
+    $uri = 'http://maps.googleapis.com/maps/api/geocode/json';
+    $parameters = array(
+        'address' => $q,
+        'region' => $this->region,
+        'sensor' => 'false',
+        'language' => $this->language
+    );
+
+//    $this->dispatcher->notify(new sfEvent($this, 'geocoding_request.fetch_prepare', array(
+//      'name'       => $this->name,
+//      'uri'        => $uri,
+//      'parameters' => $parameters,
+//    )));
+
+    $data = file_get_contents($uri.'?'.  \http_build_query($parameters));
+
+//    $this->dispatcher->notify(new sfEvent($this, 'geocoding_request.fetch_success', array(
+//      'name'       => $this->name,
+//      'uri'        => $uri,
+//      'parameters' => $parameters,
+//      'result'     => $result
+//    )));
+
+    //$logger = new \sfFileLogger(\sfContext::getInstance()->getEventDispatcher(), array('file' => \sfConfig::get('sf_log_dir') . '/geocoding.log'));
+    //$logger->log($call, \sfFileLogger::INFO);
 
     $locations = json_decode($data, true);
     $this->status = $locations['status'];

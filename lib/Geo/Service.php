@@ -27,7 +27,13 @@ abstract class Service
   protected $status;
 
   protected $service_results;
-  
+
+  protected $name;
+
+  protected $uri;
+
+  protected $parameters = array();
+
   /**
    * @param string
    * @return array
@@ -77,6 +83,21 @@ abstract class Service
   public function getServiceResults()
   {
     return $this->service_results;
+  }
+
+  public function getUri()
+  {
+    return $this->uri;
+  }
+
+  public function getParameters()
+  {
+    return $this->parameters;
+  }
+
+  public function getName()
+  {
+    return $this->name;
   }
   
   public function search($q)

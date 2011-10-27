@@ -135,5 +135,16 @@ class Search
   {
     return $this->services;
   }
+
+  /**
+   * Return Service
+   * 
+   * @param integer $index
+   * @return Geo\Service
+   */
+  public function getService($index)
+  {
+    return $this->services[$index];
+  }
 }
 
