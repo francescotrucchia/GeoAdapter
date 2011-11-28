@@ -24,7 +24,7 @@ class SearchCacheTest extends \PHPUnit_Framework_TestCase
   public function testQuery()
   {
     $this->location->
-            expects($this->exactly(3))->
+            expects($this->exactly(4))->
             method('getAddress')->
             will($this->returnValue('roma'));
 
@@ -37,14 +37,19 @@ class SearchCacheTest extends \PHPUnit_Framework_TestCase
             expects($this->at(1))->
             method('setAttribute')->
             with('last_search', 'roma');
-
+    
     $this->user->
             expects($this->at(2))->
+            method('setAttribute')->
+            with('results');
+
+    $this->user->
+            expects($this->at(3))->
             method('setAttribute')->
             with('last_query', 'roma');
 
     $this->user->
-            expects($this->at(3))->
+            expects($this->at(4))->
             method('setAttribute')->
             with('last_search', 'roma');
     
@@ -59,7 +64,7 @@ class SearchCacheTest extends \PHPUnit_Framework_TestCase
             will($this->returnValue(array()));
 
     $this->search->
-            expects($this->exactly(3))->
+            expects($this->exactly(4))->
             method('getFirst')->
             will($this->returnValue($this->location));
 

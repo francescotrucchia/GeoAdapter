@@ -38,10 +38,13 @@ class SearchCache
     {
       $this->search->query($q, $service_index, $e);
       $this->cached_queries[$q] = $this->search->getResults();
+      $q_complete = strtolower($this->search->getFirst()->getAddress());
+      $this->cached_queries[$q_complete] = $this->cached_queries[$q];
     }
 
     $this->search->setResults($this->cached_queries[$q]);
     $this->user->setAttribute('last_search', $this->search->getFirst()->getAddress());
+    $this->user->setAttribute('results', $this->cached_queries);
   }
 
   public function getFirst()
@@ -57,10 +60,5 @@ class SearchCache
   public function getCachedQueries()
   {
     return $this->cached_queries;
-  }
-
-  public function __destruct()
-  {
-    $this->user->setAttribute('results', $this->cached_queries);
   }
 }
