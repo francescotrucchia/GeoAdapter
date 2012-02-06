@@ -29,8 +29,8 @@ class NominatimTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals('9', count($results));
 
     $this->assertInstanceOf('\Geo\Location', $results['0']);
-    $this->assertEquals('45.466621', number_format($results['0']->getLatitude(), 6));
-    $this->assertEquals('9.190617', number_format($results['0']->getLongitude(), 6));
-    $this->assertEquals('Milano, Lombardia, Italia, Europa', $results['0']->getAddress());
+    $this->assertEquals('45.461320', number_format($results['0']->getLatitude(), 6));
+    $this->assertEquals('9.122941', number_format($results['0']->getLongitude(), 6));
+    $this->assertEquals('Milano, Lombardia, Italia', $results['0']->getAddress());
   }
 }
