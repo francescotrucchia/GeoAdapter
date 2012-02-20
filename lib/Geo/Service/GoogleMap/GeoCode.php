@@ -33,7 +33,6 @@ class GeoCode extends \Geo\Service
 
   public function query($q)
   {
-
     $uri = 'http://maps.googleapis.com/maps/api/geocode/json';
     $parameters = array(
         'address' => $q,
@@ -42,23 +41,7 @@ class GeoCode extends \Geo\Service
         'language' => $this->language
     );
 
-//    $this->dispatcher->notify(new sfEvent($this, 'geocoding_request.fetch_prepare', array(
-//      'name'       => $this->name,
-//      'uri'        => $uri,
-//      'parameters' => $parameters,
-//    )));
-
-    $data = file_get_contents($uri.'?'.  \http_build_query($parameters));
-
-//    $this->dispatcher->notify(new sfEvent($this, 'geocoding_request.fetch_success', array(
-//      'name'       => $this->name,
-//      'uri'        => $uri,
-//      'parameters' => $parameters,
-//      'result'     => $result
-//    )));
-
-    //$logger = new \sfFileLogger(\sfContext::getInstance()->getEventDispatcher(), array('file' => \sfConfig::get('sf_log_dir') . '/geocoding.log'));
-    //$logger->log($call, \sfFileLogger::INFO);
+    $data = @file_get_contents($uri.'?'.  \http_build_query($parameters));
 
     $locations = json_decode($data, true);
     $this->status = $locations['status'];

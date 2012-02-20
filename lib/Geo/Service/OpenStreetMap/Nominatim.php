@@ -34,7 +34,7 @@ class Nominatim extends Service
   {
     $name = urlencode($q);
     $baseUrl = 'http://nominatim.openstreetmap.org/search?format=json&q=';
-    $data = file_get_contents("{$baseUrl}{$name}&countrycodes={$this->region}&accept-language=it&addressdetails=1");
+    $data = @file_get_contents("{$baseUrl}{$name}&countrycodes={$this->region}&accept-language=it&addressdetails=1");
 
     return json_decode($data, true);
   }
