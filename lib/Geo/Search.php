@@ -91,7 +91,7 @@ class Search
     try
     {
       $this->services[$service_index]->search($q);
-      $this->results = $this->services[$service_index]->getResults();
+      $this->results = clone $this->services[$service_index]->getResults();
     }
     catch(\Exception $e)
     {

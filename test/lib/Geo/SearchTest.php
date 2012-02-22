@@ -37,7 +37,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
     $this->service->
            expects($this->once())->
            method('getResults')->
-           will($this->returnValue(array($this->location)));
+           will($this->returnValue(new \ArrayObject(array($this->location))));
 
     $search = new Search(array($this->service));
     $search->query('Milano');
@@ -80,7 +80,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
     $this->service->
            expects($this->once())->
            method('getResults')->
-           will($this->returnValue(array($this->location)));
+           will($this->returnValue(new \ArrayObject(array($this->location))));
 
     $this->search->addService($this->service);
     $this->search->query('Milano');
