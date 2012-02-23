@@ -8,9 +8,7 @@ class Search extends Geo\Search
 {
   protected function configure()
   {
-    //$this->addService(new Geo\Service\OpenStreetMap\Nominatim);
     $this->addService(new Geo\Service\GoogleMap\GeoCode);
-    
   }
 }
 
@@ -48,7 +46,7 @@ catch(Exception $e)
 {
   $services = $search->getServices();
   echo 'Status: '.$services[0]->getStatus().PHP_EOL;
-  echo 'Service results'.print_r($services[0]->getServiceResults()).PHP_EOL;
+  echo 'Service results: '.print_r($services[0]->getServiceResults()).PHP_EOL;
 }
 
 
