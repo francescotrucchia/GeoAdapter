@@ -59,6 +59,14 @@ class PlaceFinder extends \Geo\Service
     $locations = unserialize($data);
     
     $this->status = $locations['ResultSet']['Error'];
-    return $locations['ResultSet']['Result'];
+    
+    
+    
+    if (isset($locations['ResultSet']['Result']))
+    {
+      return $locations['ResultSet']['Result'];
+    }
+    
+    
   }
 }
