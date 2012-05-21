@@ -11,4 +11,5 @@ require_once __DIR__.'/../lib/Geo/Autoload.php';
 
 setlocale(LC_ALL, 'en_GB');
 
-Geo\Autoload::register();
+$classLoader = new Geo\ClassLoader('Geo', __DIR__ . '/../lib');
+$classLoader->register();
