@@ -53,6 +53,6 @@ class LocationTest extends \PHPUnit_Framework_TestCase
              ->method('getLongitude')
              ->will($this->returnValue('15.087834500000'));
     
-    $this->assertEquals($this->object->distance($location), 0.00);
+    $this->assertEquals(0.00, $this->object->distance($location));
   }
 }
