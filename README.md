@@ -1,4 +1,4 @@
-# GeoAdapter
+# GeoAdapter [![Build Status](https://secure.travis-ci.org/francescotrucchia/GeoAdapter.png)](http://travis-ci.org/francescotrucchia/GeoAdapter)
 
 With GeoAdapter you can find a location from an address. A location is a object with latitude and longitude attribute.
 Location object implements a method can calculate distance between two location.
