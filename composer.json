@@ -1,5 +1,5 @@
 {
-    "name": "Ideato/GeoAdapter",
+    "name": "ideato/geo-adapter",
     "description": "Library to use different geolocalization adapter",
     "homepage": "https://github.com/francescotrucchia/GeoAdapter",
     "type": "library",
