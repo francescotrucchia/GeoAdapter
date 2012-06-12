@@ -18,9 +18,9 @@ namespace Geo;
  */
 class Location
 {
-  private $latitude;
-  private $longitude;
-  private $address;
+  protected $latitude;
+  protected $longitude;
+  protected $address;
 
   /**
    * Set latitude
