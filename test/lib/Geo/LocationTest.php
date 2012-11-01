@@ -52,7 +52,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     $location->expects($this->once())
              ->method('getLongitude')
              ->will($this->returnValue('15.087834500000'));
-
-    $this->assertEquals((float)"0.00", $this->object->distance($location));
+    // the argument is treated as a float, and presented as a floating-point number (locale aware)
+    $this->assertEquals(sprintf("%f","0.00"), sprintf("%f",$this->object->distance($location)));
   }
 }
