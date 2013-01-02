@@ -6,7 +6,8 @@ Location object implements a method can calculate distance between two location.
 <pre><code>
 require_once(__DIR__.'/../lib/Geo/Autoload.php');
 
-Geo\Autoload::register();
+$loader = new Geo\ClassLoader('Geo', dirname(__DIR__.'/../lib/Geo'));
+$loader->register();
 
 class Search extends Geo\Search
 {
