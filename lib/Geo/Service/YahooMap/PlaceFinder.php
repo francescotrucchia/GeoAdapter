@@ -28,18 +28,18 @@ class PlaceFinder extends \Geo\Service
     
     $address = array();
     
-    if($values['line1'])
+    if($values->line1)
     {
-      array_push($address, $values['line1']);
+      array_push($address, $values->line1);
     }
     
-    if($values['line2'])
+    if($values->line2)
     {
-      array_push($address, $values['line2']);
+      array_push($address, $values->line2);
     }
     
-    !isset($values['latitude'])?:$location->setLatitude($values['latitude']);
-    !isset($values['longitude'])?:$location->setLongitude($values['longitude']);
+    !isset($values->latitude)?:$location->setLatitude($values->latitude);
+    !isset($values->longitude)?:$location->setLongitude($values->longitude);
     !count($address)?:$location->setAddress(\implode(', ', $address));
 
     return $location;
@@ -50,23 +50,22 @@ class PlaceFinder extends \Geo\Service
     $parameters = array(
         'q' => $q,
         'appid' => $this->appid,
-        'flags' => 'P',
+        'flags' => 'J',
         'locale' => $this->language
     );
-
+    
     $data = @file_get_contents($this->uri.'?'.  \http_build_query($parameters));
     
-    $locations = unserialize($data);
+    $locations = json_decode($data);
     
-    $this->status = $locations['ResultSet']['Error'];
+    $this->status = $locations->ResultSet->Error;
     
-    
-    
-    if (isset($locations['ResultSet']['Result']))
+    if (!isset($locations->ResultSet->Results))
     {
-      return $locations['ResultSet']['Result'];
+      throw new \Exception('Results is not set');
     }
     
+    return $locations->ResultSet->Results;
     
   }
 }

@@ -29,7 +29,7 @@ class PlaceFinderTest extends \PHPUnit_Framework_TestCase
     $this->assertEquals('1', count($results));
     
     $this->assertInstanceOf('\Geo\Location', $results['0']);
-    $this->assertEquals('45.468945', $results['0']->getLatitude());
+    $this->assertEquals('45.468941', $results['0']->getLatitude());
     $this->assertEquals('9.181030', $results['0']->getLongitude());
     $this->assertEquals('Milano MI', $results['0']->getAddress());
     $this->assertEquals(0, $this->service->getStatus());
