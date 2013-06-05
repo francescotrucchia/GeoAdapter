@@ -3,7 +3,8 @@
 With GeoAdapter you can find a location from an address. A location is a object with latitude and longitude attribute.
 Location object implements a method can calculate distance between two location.
 
-<pre><code>
+``` php
+<?php
 require_once(__DIR__.'/../lib/Geo/Autoload.php');
 
 $loader = new Geo\ClassLoader('Geo', dirname(__DIR__.'/../lib/Geo'));
@@ -38,4 +39,4 @@ echo 'Latitude: '.$location_b->getLatitude().PHP_EOL;
 echo 'Longitude: '.$location_b->getLongitude().PHP_EOL.PHP_EOL;
 
 echo 'Distance from Address1 to Address2: '.$location_a->distance($location_b).' Km'.PHP_EOL;
-</code></pre>
+```
