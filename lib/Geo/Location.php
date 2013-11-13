@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -18,83 +19,85 @@ namespace Geo;
  */
 class Location
 {
-  protected $latitude;
-  protected $longitude;
-  protected $address;
 
-  /**
-   * Set latitude
-   * 
-   * @param float $v
-   */
-  public function setLatitude($v)
-  {
-    $this->latitude = $v;
-  }
+    protected $latitude;
+    protected $longitude;
+    protected $address;
 
-  /**
-   * Get latitude
-   * 
-   * @return float
-   */
-  public function getLatitude()
-  {
-    return $this->latitude;
-  }
+    /**
+     * Set latitude
+     * 
+     * @param float $v
+     */
+    public function setLatitude($v)
+    {
+        $this->latitude = $v;
+    }
 
-  /**
-   * Set longitude
-   *
-   * @param float $v
-   */
-  public function setLongitude($v)
-  {
-    $this->longitude = $v;
-  }
+    /**
+     * Get latitude
+     * 
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
 
-  /**
-   * Get longitude
-   *
-   * @return float
-   */
-  public function getLongitude()
-  {
-    return $this->longitude;
-  }
+    /**
+     * Set longitude
+     *
+     * @param float $v
+     */
+    public function setLongitude($v)
+    {
+        $this->longitude = $v;
+    }
 
-  /**
-   * Set address
-   *
-   * @param string $address
-   */
-  public function setAddress($address)
-  {
-    $this->address = $address;
-  }
+    /**
+     * Get longitude
+     *
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
 
-  /**
-   * Get Address
-   *
-   * @return string
-   */
-  public function getAddress()
-  {
-    return $this->address;
-  }
+    /**
+     * Set address
+     *
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
 
-  /**
-   * Measure the distance between this point and another point
-   * 
-   * @param Location $location
-   * @return float
-   */
-  public function distance(Location $location)
-  {
-    $latA = deg2rad($this->latitude);
-    $lonA = deg2rad($this->longitude);
-    $latB = deg2rad($location->getLatitude());
-    $lonB = deg2rad($location->getLongitude());
+    /**
+     * Get Address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
-    return sprintf('%.2f', acos(sin($latA)*sin($latB) + cos($latA) * cos($latB) * cos($lonB - $lonA)) * 6378.1370);
-  }
+    /**
+     * Measure the distance between this point and another point
+     * 
+     * @param Location $location
+     * @return float
+     */
+    public function distance(Location $location)
+    {
+        $latA = deg2rad($this->latitude);
+        $lonA = deg2rad($this->longitude);
+        $latB = deg2rad($location->getLatitude());
+        $lonB = deg2rad($location->getLongitude());
+
+        return sprintf('%.2f', acos(sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonB - $lonA)) * 6378.1370);
+    }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -24,6 +25,7 @@ namespace Geo;
  */
 class ClassLoader
 {
+
     private $_fileExtension = '.php';
     private $_namespace;
     private $_includePath;
@@ -125,7 +127,7 @@ class ClassLoader
      */
     public function loadClass($className)
     {
-        if (null === $this->_namespace || $this->_namespace.$this->_namespaceSeparator === substr($className, 0, strlen($this->_namespace.$this->_namespaceSeparator))) {
+        if (null === $this->_namespace || $this->_namespace . $this->_namespaceSeparator === substr($className, 0, strlen($this->_namespace . $this->_namespaceSeparator))) {
             $fileName = '';
             $namespace = '';
             if (false !== ($lastNsPos = strripos($className, $this->_namespaceSeparator))) {
@@ -138,4 +140,5 @@ class ClassLoader
             require ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '') . $fileName;
         }
     }
+
 }

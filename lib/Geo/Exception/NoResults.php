@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -18,5 +19,5 @@ namespace Geo\Exception;
  */
 class NoResults extends \Exception
 {
-  
+    
 }

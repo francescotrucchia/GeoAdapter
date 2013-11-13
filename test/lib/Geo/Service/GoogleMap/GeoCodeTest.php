@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -15,23 +16,25 @@ require_once dirname(__FILE__) . '/../../../../../lib/Geo/Service/GoogleMap/GeoC
 
 class GeoCodeTest extends \PHPUnit_Framework_TestCase
 {
-  public function setUp()
-  {
-    $this->service = new GeoCode;
-    $this->service->setLanguage('IT');
-  }
 
-  public function testSearch()
-  {
-    $this->service->search('Milano');
-    $results = $this->service->getResults();
+    public function setUp()
+    {
+        $this->service = new GeoCode;
+        $this->service->setLanguage('IT');
+    }
 
-    $this->assertEquals('3', count($results));
+    public function testSearch()
+    {
+        $this->service->search('Milano');
+        $results = $this->service->getResults();
 
-    $this->assertInstanceOf('\Geo\Location', $results['0']);
-    $this->assertEquals('45.4654542', $results['0']->getLatitude());
-    $this->assertEquals('9.186516', $results['0']->getLongitude());
-    $this->assertEquals('Milano, Italia', $results['0']->getAddress());
-    $this->assertEquals('OK', $this->service->getStatus());
-  }
+        $this->assertEquals('3', count($results));
+
+        $this->assertInstanceOf('\Geo\Location', $results['0']);
+        $this->assertEquals('45.4654542', $results['0']->getLatitude());
+        $this->assertEquals('9.186516', $results['0']->getLongitude());
+        $this->assertEquals('Milano, Italia', $results['0']->getAddress());
+        $this->assertEquals('OK', $this->service->getStatus());
+    }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -15,23 +16,25 @@ require_once dirname(__FILE__) . '/../../../../../lib/Geo/Service/OpenStreetMap/
 
 class NominatimTest extends \PHPUnit_Framework_TestCase
 {
-  public function setUp()
-  {
-    $this->service = new Nominatim;
-    $this->service->setRegion('IT');
-    $this->service->setLanguage('it');
-  }
 
-  public function testSearch()
-  {
-    $this->service->search('Milano');
-    $results = $this->service->getResults();
+    public function setUp()
+    {
+        $this->service = new Nominatim;
+        $this->service->setRegion('IT');
+        $this->service->setLanguage('it');
+    }
 
-    $this->assertEquals('10', count($results));
+    public function testSearch()
+    {
+        $this->service->search('Milano');
+        $results = $this->service->getResults();
 
-    $this->assertInstanceOf('\Geo\Location', $results['0']);
-    $this->assertEquals('45.466621', number_format($results['0']->getLatitude(), 6));
-    $this->assertEquals('9.190617', number_format($results['0']->getLongitude(), 6));
-    $this->assertEquals('Milano, Lombardia, Italia', $results['0']->getAddress());
-  }
+        $this->assertEquals('10', count($results));
+
+        $this->assertInstanceOf('\Geo\Location', $results['0']);
+        $this->assertEquals('45.466621', number_format($results['0']->getLatitude(), 6));
+        $this->assertEquals('9.190617', number_format($results['0']->getLongitude(), 6));
+        $this->assertEquals('Milano, Lombardia, Italia', $results['0']->getAddress());
+    }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -18,33 +19,35 @@ namespace Geo\Service\GoogleMap;
  */
 class GeoCode extends \Geo\Service
 {
-  protected $name = 'google geocoding';
-  protected $uri = "http://maps.googleapis.com/maps/api/geocode/json";
-  
-  public function initLocation($values)
-  {
-    $location = new \Geo\Location;
-    !isset($values['geometry']['location']['lat'])?:$location->setLatitude($values['geometry']['location']['lat']);
-    !isset($values['geometry']['location']['lng'])?:$location->setLongitude($values['geometry']['location']['lng']);
-    !isset($values['formatted_address'])?:$location->setAddress($values['formatted_address']);
 
-    return $location;
-  }
+    protected $name = 'google geocoding';
+    protected $uri = "http://maps.googleapis.com/maps/api/geocode/json";
 
-  public function query($q)
-  {
-    $uri = 'http://maps.googleapis.com/maps/api/geocode/json';
-    $parameters = array(
-        'address' => $q,
-        'region' => $this->region,
-        'sensor' => 'false',
-        'language' => $this->language
-    );
+    public function initLocation($values)
+    {
+        $location = new \Geo\Location;
+        !isset($values['geometry']['location']['lat'])? : $location->setLatitude($values['geometry']['location']['lat']);
+        !isset($values['geometry']['location']['lng'])? : $location->setLongitude($values['geometry']['location']['lng']);
+        !isset($values['formatted_address'])? : $location->setAddress($values['formatted_address']);
 
-    $data = @file_get_contents($uri.'?'.  \http_build_query($parameters));
+        return $location;
+    }
 
-    $locations = json_decode($data, true);
-    $this->status = $locations['status'];
-    return $locations['results'];
-  }
+    public function query($q)
+    {
+        $uri = 'http://maps.googleapis.com/maps/api/geocode/json';
+        $parameters = array(
+            'address' => $q,
+            'region' => $this->region,
+            'sensor' => 'false',
+            'language' => $this->language
+        );
+
+        $data = @file_get_contents($uri . '?' . \http_build_query($parameters));
+
+        $locations = json_decode($data, true);
+        $this->status = $locations['status'];
+        return $locations['results'];
+    }
+
 }

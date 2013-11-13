@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the GeoAdapter software.
  * (c) 2011 Francesco Trucchia <francesco@trucchia.it>
@@ -18,77 +19,79 @@ require_once dirname(__FILE__) . '/../../../lib/Geo/Search.php';
 
 class SearchTest extends \PHPUnit_Framework_TestCase
 {
-  protected $search;
 
-  protected function setUp()
-  {
-    $this->location = $this->getMock('\Geo\Location', array('getLatitude', 'getLongitude'));
-    $this->service = $this->getMock('\Geo\Service\OpenStreetMap\Nominatim', array('search', 'getResults'));
-    $this->search = new Search;
-  }
+    protected $search;
 
-  public function testServiceInConstructor()
-  {
-    $this->service->
-           expects($this->once())->
-           method('search')->
-           with('Milano');
+    protected function setUp()
+    {
+        $this->location = $this->getMock('\Geo\Location', array('getLatitude', 'getLongitude'));
+        $this->service = $this->getMock('\Geo\Service\OpenStreetMap\Nominatim', array('search', 'getResults'));
+        $this->search = new Search;
+    }
 
-    $this->service->
-           expects($this->once())->
-           method('getResults')->
-           will($this->returnValue(new \ArrayObject(array($this->location))));
+    public function testServiceInConstructor()
+    {
+        $this->service->
+                expects($this->once())->
+                method('search')->
+                with('Milano');
 
-    $search = new Search(array($this->service));
-    $search->query('Milano');
+        $this->service->
+                expects($this->once())->
+                method('getResults')->
+                will($this->returnValue(new \ArrayObject(array($this->location))));
 
-    $results = $search->getResults();
+        $search = new Search(array($this->service));
+        $search->query('Milano');
 
-    $this->assertEquals(1, count($results));
-  }
+        $results = $search->getResults();
 
-  /**
-   * @expectedException \Geo\Exception\InvalidService
-   */
-  public function testQueryWithoutService()
-  {
-    $this->search->query('Milano');
-  }
+        $this->assertEquals(1, count($results));
+    }
 
-  /**
-   * @expectedException \Geo\Exception\NoResults
-   */
-  public function testQueryWithInvalidPlace()
-  {
-    $this->service->
-           expects($this->once())->
-           method('search')->
-           with('questo è un indirizzo che non esiste')->
-           will($this->throwException(new \Geo\Exception\NoResults));
+    /**
+     * @expectedException \Geo\Exception\InvalidService
+     */
+    public function testQueryWithoutService()
+    {
+        $this->search->query('Milano');
+    }
 
-    $this->search->addService($this->service);
-    $this->search->query('questo è un indirizzo che non esiste');
-  }
+    /**
+     * @expectedException \Geo\Exception\NoResults
+     */
+    public function testQueryWithInvalidPlace()
+    {
+        $this->service->
+                expects($this->once())->
+                method('search')->
+                with('questo è un indirizzo che non esiste')->
+                will($this->throwException(new \Geo\Exception\NoResults));
 
-  public function testQuery()
-  {
-    $this->service->
-           expects($this->once())->
-           method('search')->
-           with('Milano');
+        $this->search->addService($this->service);
+        $this->search->query('questo è un indirizzo che non esiste');
+    }
 
-    $this->service->
-           expects($this->once())->
-           method('getResults')->
-           will($this->returnValue(new \ArrayObject(array($this->location))));
+    public function testQuery()
+    {
+        $this->service->
+                expects($this->once())->
+                method('search')->
+                with('Milano');
 
-    $this->search->addService($this->service);
-    $this->search->query('Milano');
+        $this->service->
+                expects($this->once())->
+                method('getResults')->
+                will($this->returnValue(new \ArrayObject(array($this->location))));
 
-    $results = $this->search->getResults();
+        $this->search->addService($this->service);
+        $this->search->query('Milano');
 
-    $this->assertEquals(1, count($results));
-    $this->assertTrue($results[0] === $this->search->getFirst() && $this->search->getFirst() === $this->search->getResult(0));
-    $this->assertInternalType('null', $this->search->getResult(1));
-  }
+        $results = $this->search->getResults();
+
+        $this->assertEquals(1, count($results));
+        $this->assertTrue($results[0] === $this->search->getFirst() && $this->search->getFirst() === $this->search->getResult(0));
+        $this->assertInternalType('null', $this->search->getResult(1));
+    }
+
 }
