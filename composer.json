@@ -3,7 +3,7 @@
     "description": "Library to use different geolocalization adapter",
     "homepage": "https://github.com/francescotrucchia/GeoAdapter",
     "type": "library",
-    "license": "MIT",
+    "license": "GPL",
     "authors": [
         {
             "name": "Francesco Trucchia",
