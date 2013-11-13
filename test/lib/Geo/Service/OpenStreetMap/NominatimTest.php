@@ -19,6 +19,7 @@ class NominatimTest extends \PHPUnit_Framework_TestCase
   {
     $this->service = new Nominatim;
     $this->service->setRegion('IT');
+    $this->service->setLanguage('it');
   }
 
   public function testSearch()

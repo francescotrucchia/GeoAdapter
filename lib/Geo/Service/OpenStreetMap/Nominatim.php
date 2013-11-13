@@ -32,14 +32,12 @@ class Nominatim extends Service
   
   protected function query($q)
   {
-    $name = urlencode($q);
-    
     $uri = 'http://nominatim.openstreetmap.org/search';
     $parameters = array(
         'format' => 'json',
-        'q' => $name,
+        'q' => $q,
         'countrycodes' => $this->region,
-        'accept-language' => 'it',
+        'accept-language' => $this->language,
         'addressdetails' => 1
     );
     
