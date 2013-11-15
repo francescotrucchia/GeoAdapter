@@ -10,17 +10,9 @@ require_once(__DIR__.'/../lib/Geo/Autoload.php');
 $loader = new Geo\ClassLoader('Geo', dirname(__DIR__.'/../lib/Geo'));
 $loader->register();
 
-class Search extends Geo\Search
-{
-  protected function configure()
-  {
-    $this->addService(new Geo\Service\OpenStreetMap\Nominatim);
-    $this->addService(new Geo\Service\GoogleMap\GeoCode);
-  }
-}
-
 
 $search = new Search();
+$search->addService(new Geo\Service\OpenStreetMap\Nominatim)
 
 $search->query('via Montenapoleone, Milano');
 
