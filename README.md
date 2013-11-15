@@ -32,3 +32,5 @@ echo 'Longitude: '.$location_b->getLongitude().PHP_EOL.PHP_EOL;
 
 echo 'Distance from Address1 to Address2: '.$location_a->distance($location_b).' Km'.PHP_EOL;
 ```
+
+This software is released under GPL license.
