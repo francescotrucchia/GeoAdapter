@@ -34,3 +34,5 @@ echo 'Distance from Address1 to Address2: '.$location_a->distance($location_b).'
 ```
 
 This software is released under GPL license.
+
+For commercial version go to [Binpress](http://www.binpress.com/app/php-geocoding-adapter/1734).
