@@ -1,5 +1,5 @@
 {
-    "name": "ideato/geo-adapter",
+    "name": "francescotrucchia/geo-adapter",
     "description": "Library to use different geolocalization adapter",
     "homepage": "https://github.com/francescotrucchia/GeoAdapter",
     "type": "library",
@@ -7,8 +7,8 @@
     "authors": [
         {
             "name": "Francesco Trucchia",
-            "email": "ft@ideato.it",
-            "homepage": "http://www.ideato.it"
+            "email": "francesco@trucchia.it",
+            "homepage": "http://www.francescotrucchia.it"
         }
     ],
     "require": {

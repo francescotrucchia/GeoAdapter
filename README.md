@@ -1,11 +1,10 @@
-# GeoAdapter [![Build Status](https://secure.travis-ci.org/francescotrucchia/GeoAdapter.png)](http://travis-ci.org/francescotrucchia/GeoAdapter)
+# GeoAdapter
 
 With GeoAdapter you can find a location from an address. A location is a object with latitude and longitude attribute.
 Location object implements a method can calculate distance between two location.
 
 ``` php
 <?php
-require_once(__DIR__.'/../lib/Geo/Autoload.php');
 
 $loader = new Geo\ClassLoader('Geo', dirname(__DIR__.'/../lib/Geo'));
 $loader->register();
@@ -34,5 +33,3 @@ echo 'Distance from Address1 to Address2: '.$location_a->distance($location_b).'
 ```
 
 This software is released under GPL license.
-
-For commercial version go to [Binpress](http://www.binpress.com/app/php-geocoding-adapter/1734).
