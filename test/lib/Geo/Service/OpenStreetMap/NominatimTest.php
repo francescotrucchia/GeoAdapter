@@ -7,14 +7,12 @@
 
 namespace Geo\Service\OpenStreetMap;
 
-require_once dirname(__FILE__) . '/../../../../../lib/Geo/Location.php';
-require_once dirname(__FILE__) . '/../../../../../lib/Geo/Service.php';
-require_once dirname(__FILE__) . '/../../../../../lib/Geo/Service/OpenStreetMap/Nominatim.php';
+use PHPUnit\Framework\TestCase;
 
-class NominatimTest extends \PHPUnit_Framework_TestCase
+class NominatimTest extends TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->service = new Nominatim;
         $this->service->setRegion('IT');

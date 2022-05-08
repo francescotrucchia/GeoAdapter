@@ -7,14 +7,14 @@
 
 namespace Geo;
 
-require_once dirname(__FILE__) . '/../../../lib/Geo/Location.php';
+use PHPUnit\Framework\TestCase;
 
-class LocationTest extends \PHPUnit_Framework_TestCase
+class LocationTest extends TestCase
 {
 
     protected $object;
 
-    protected function setUp()
+    public function setUp(): void
     {
         $this->object = new Location;
         $this->object->setLatitude('1.1234');

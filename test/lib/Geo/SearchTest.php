@@ -7,22 +7,19 @@
 
 namespace Geo;
 
-require_once dirname(__FILE__) . '/../../../lib/Geo/Exception/InvalidService.php';
-require_once dirname(__FILE__) . '/../../../lib/Geo/Exception/NoResults.php';
-require_once dirname(__FILE__) . '/../../../lib/Geo/Location.php';
-require_once dirname(__FILE__) . '/../../../lib/Geo/Service.php';
-require_once dirname(__FILE__) . '/../../../lib/Geo/Service/OpenStreetMap/Nominatim.php';
-require_once dirname(__FILE__) . '/../../../lib/Geo/Search.php';
+use Geo\Exception\InvalidService;
+use Geo\Exception\NoResults;
+use PHPUnit\Framework\TestCase;
 
-class SearchTest extends \PHPUnit_Framework_TestCase
+class SearchTest extends TestCase
 {
 
     protected $search;
 
-    protected function setUp()
+    public function setUp(): void
     {
-        $this->location = $this->getMock('\Geo\Location', array('getLatitude', 'getLongitude'));
-        $this->service = $this->getMock('\Geo\Service\OpenStreetMap\Nominatim', array('search', 'getResults'));
+        $this->location = $this->createMock('\Geo\Location', array('getLatitude', 'getLongitude'));
+        $this->service = $this->createMock('\Geo\Service\OpenStreetMap\Nominatim', array('search', 'getResults'));
         $this->search = new Search;
     }
 
@@ -46,19 +43,18 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($results));
     }
 
-    /**
-     * @expectedException \Geo\Exception\InvalidService
-     */
+    
     public function testQueryWithoutService()
     {
+        $this->expectException(InvalidService::class);
+
         $this->search->query('Milano');
     }
 
-    /**
-     * @expectedException \Geo\Exception\NoResults
-     */
     public function testQueryWithInvalidPlace()
     {
+        $this->expectException(NoResults::class);
+
         $this->service->
                 expects($this->once())->
                 method('search')->
@@ -88,7 +84,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(1, count($results));
         $this->assertTrue($results[0] === $this->search->getFirst() && $this->search->getFirst() === $this->search->getResult(0));
-        $this->assertInternalType('null', $this->search->getResult(1));
+        $this->assertEquals(null, $this->search->getResult(1));
     }
 
 }

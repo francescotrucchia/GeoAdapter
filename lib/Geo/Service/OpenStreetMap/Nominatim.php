@@ -31,7 +31,7 @@ class Nominatim extends Service
 
     protected function query($q)
     {
-        $uri = 'http://nominatim.openstreetmap.org/search';
+        $uri = 'https://nominatim.openstreetmap.org/search';
         $parameters = array(
             'format' => 'json',
             'q' => $q,
