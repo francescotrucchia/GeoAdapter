@@ -31,18 +31,21 @@ class Nominatim extends Service
 
     protected function query($q)
     {
-        $uri = 'https://nominatim.openstreetmap.org/search';
-        $parameters = array(
-            'format' => 'json',
-            'q' => $q,
-            'countrycodes' => $this->region,
-            'accept-language' => $this->language,
-            'addressdetails' => 1
-        );
+        $client = new \GuzzleHttp\Client();
+        $response = $client->get('https://nominatim.openstreetmap.org/search', [
+            'query' => [
+                'format' => 'json',
+                'q' => $q,
+                'countrycodes' => $this->region,
+                'accept-language' => $this->language,
+                'addressdetails' => 1    
+            ]
+        ]);
+        
 
-        $data = file_get_contents($uri . '?' . \http_build_query($parameters));
+        
 
-        return json_decode($data, true);
+        return json_decode((string)$response->getBody(), true);
     }
 
 }
