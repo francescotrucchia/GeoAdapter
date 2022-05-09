@@ -24,6 +24,6 @@ echo 'Address2: piazza Boccolino, Osimo'.PHP_EOL;
 echo 'Latitude: '.$location_b->getLatitude().PHP_EOL;
 echo 'Longitude: '.$location_b->getLongitude().PHP_EOL.PHP_EOL;
 
-//$distance = $location_a->distance($location_b);
+$distance = $location_a->distance($location_b);
 
-//echo "Distance from Milano to Firenze is $distance Km".PHP_EOL;
+echo "Distance from Milano to Firenze is $distance Km".PHP_EOL;

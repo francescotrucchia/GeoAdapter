@@ -31,5 +31,4 @@ class NominatimTest extends TestCase
         $this->assertEquals('9.189635', number_format($results['0']->getLongitude(), 6));
         $this->assertEquals('Milano, Lombardia, Italia', $results['0']->getAddress());
     }
-
 }

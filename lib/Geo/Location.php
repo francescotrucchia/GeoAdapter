@@ -52,7 +52,12 @@ class Location
 
     public function distance(Location $location): float
     {
-        return 1.0;
+        $latA = deg2rad($this->latitude);
+        $lonA = deg2rad($this->longitude);
+        $latB = deg2rad($location->getLatitude());
+        $lonB = deg2rad($location->getLongitude());
+
+        return sprintf('%.2f', acos(sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonB - $lonA)) * 6378.1370);
     }
 
 }
