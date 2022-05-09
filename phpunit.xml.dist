@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="./test/bootstrap.php" colors="true">
-    <testsuites>
-        <testsuite name="GeoAdapter Test Suite">
-            <directory>./test/lib/</directory>
-        </testsuite>
-    </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./lib/Geo/</directory>
-        </whitelist>
-    </filter>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory suffix=".php">./lib/Geo/</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="GeoAdapter Test Suite">
+      <directory>./test/lib/</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

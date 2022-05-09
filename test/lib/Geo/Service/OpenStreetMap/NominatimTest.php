@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class NominatimTest extends TestCase
 {
-
     public function setUp(): void
     {
         $this->service = new Nominatim;
@@ -20,7 +19,7 @@ class NominatimTest extends TestCase
         $this->service->setLanguage('it');
     }
 
-    public function testSearch()
+    public function testSearch(): void
     {
         $this->service->search('Milano');
         $results = $this->service->getResults();

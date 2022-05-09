@@ -7,6 +7,8 @@
 
 namespace Geo;
 
+use ArrayObject;
+
 /**
  * Search is the main class that expones interfaces to search through the registered services
  *
@@ -14,9 +16,8 @@ namespace Geo;
  * @subpackage search
  * @author     Francesco Trucchia <francesco@trucchia.it>
  */
-class Search
+final class Search
 {
-
     /**
      * @var ArrayObject
      */
@@ -25,65 +26,36 @@ class Search
     /**
      * @var array
      */
-    private $results = array();
+    private $results;
 
-    /**
-     * Use this method to register available services
-     */
-    protected function configure()
+    protected function configure(): void
     {
         
     }
 
-    /**
-     * Construct method can inject available services
-     *
-     * @param array $services
-     */
-    public function __construct($services = array())
+    public function __construct(array $services = [])
     {
+        $this->results = new \ArrayObject([]);
         $this->services = new \ArrayObject($services);
         $this->configure();
     }
 
-    /**
-     * Append a new service between the registered services
-     * 
-     * @param Service $service
-     */
-    public function addService(Service $service)
+    public function addService(Service $service): void
     {
         $this->services->append($service);
     }
 
-    /**
-     * Set results
-     * 
-     * @param array $results
-     */
-    public function setResults($results)
+    public function setResults(ArrayObject $results): void
     {
         $this->results = $results;
     }
 
-    /**
-     * Get results
-     *
-     * @return array
-     */
-    public function getResults()
+    public function getResults(): ArrayObject
     {
         return $this->results;
     }
 
-    /**
-     * Query the chain of geo searching services
-     * 
-     * @param string $q
-     * @param int $service_index
-     * @param Exception $e
-     */
-    public function query($q, $service_index = 0, $e = null)
+    public function query(string $q, int $service_index = 0, \Exception $e = null): void
     {
         if (!isset($this->services[$service_index])) {
             throw $e !== null ? $e : new Exception\InvalidService('Service is not set');
@@ -98,48 +70,26 @@ class Search
         }
     }
 
-    /**
-     * Get a specific result
-     *
-     * @param integer $index
-     * @return Geo\Location
-     */
-    public function getResult($index)
+    public function getResult(int $index): ?Location
     {
         if (!isset($this->results[$index])) {
-            return;
+            return null;
         }
 
         return $this->results[$index];
     }
 
-    /**
-     * Get the first result
-     *
-     * @return Geo\Location
-     */
-    public function getFirst()
+    public function getFirst(): Location
     {
         return !isset($this->results[0])? : $this->results[0];
     }
 
-    /**
-     * Return services
-     * 
-     * @return <type>
-     */
-    public function getServices()
+    public function getServices(): ArrayObject
     {
         return $this->services;
     }
 
-    /**
-     * Return Service
-     * 
-     * @param integer $index
-     * @return Geo\Service
-     */
-    public function getService($index)
+    public function getService(int $index): Service
     {
         return $this->services[$index];
     }

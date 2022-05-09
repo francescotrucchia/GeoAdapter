@@ -16,69 +16,43 @@ namespace Geo;
  */
 class Location
 {
-
     protected $latitude;
     protected $longitude;
     protected $address;
 
-    /**
-     * Set latitude
-     * 
-     * @param float $v
-     */
-    public function setLatitude($v)
+    public function setLatitude(float $v)
     {
         $this->latitude = $v;
     }
 
-    /**
-     * Get latitude
-     * 
-     * @return float
-     */
-    public function getLatitude()
+    public function getLatitude(): float
     {
         return $this->latitude;
     }
 
-    /**
-     * Set longitude
-     *
-     * @param float $v
-     */
-    public function setLongitude($v)
+    public function setLongitude(float $v)
     {
         $this->longitude = $v;
     }
 
-    /**
-     * Get longitude
-     *
-     * @return float
-     */
-    public function getLongitude()
+    public function getLongitude(): float
     {
         return $this->longitude;
     }
 
-    /**
-     * Set address
-     *
-     * @param string $address
-     */
-    public function setAddress($address)
+    public function setAddress(string $address)
     {
         $this->address = $address;
     }
 
-    /**
-     * Get Address
-     *
-     * @return string
-     */
-    public function getAddress()
+    public function getAddress(): string
     {
         return $this->address;
+    }
+
+    public function distance(Location $location): float
+    {
+        return 1.0;
     }
 
 }

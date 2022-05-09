@@ -7,6 +7,7 @@
 
 namespace Geo\Service\OpenStreetMap;
 
+use Geo\Location;
 use Geo\Service;
 
 /**
@@ -18,8 +19,7 @@ use Geo\Service;
  */
 class Nominatim extends Service
 {
-
-    protected function initLocation($values)
+    protected function initLocation(array $values): Location
     {
         $location = new \Geo\Location;
         !isset($values['lat'])? : $location->setLatitude($values['lat']);
@@ -29,7 +29,7 @@ class Nominatim extends Service
         return $location;
     }
 
-    protected function query($q)
+    protected function query(string $q): array
     {
         $client = new \GuzzleHttp\Client();
         $response = $client->get('https://nominatim.openstreetmap.org/search', [
@@ -42,9 +42,6 @@ class Nominatim extends Service
             ]
         ]);
         
-
-        
-
         return json_decode((string)$response->getBody(), true);
     }
 

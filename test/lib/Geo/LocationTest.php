@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 class LocationTest extends TestCase
 {
-
     protected $object;
 
     public function setUp(): void
@@ -22,17 +21,17 @@ class LocationTest extends TestCase
         $this->object->setAddress('via montenapoleone, Roma, Italia');
     }
 
-    public function testGetLatitude()
+    public function testGetLatitude(): void
     {
         $this->assertEquals('1.1234', $this->object->getLatitude());
     }
 
-    public function testGetLongitude()
+    public function testGetLongitude(): void
     {
         $this->assertEquals('2.4321', $this->object->getLongitude());
     }
 
-    public function testGetAddress()
+    public function testGetAddress(): void
     {
         $this->assertEquals('via montenapoleone, Roma, Italia', $this->object->getAddress());
     }

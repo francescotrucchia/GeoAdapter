@@ -23,7 +23,7 @@ class SearchTest extends TestCase
         $this->search = new Search;
     }
 
-    public function testServiceInConstructor()
+    public function testServiceInConstructor(): void
     {
         $this->service->
                 expects($this->once())->
@@ -44,14 +44,14 @@ class SearchTest extends TestCase
     }
 
     
-    public function testQueryWithoutService()
+    public function testQueryWithoutService(): void
     {
         $this->expectException(InvalidService::class);
 
         $this->search->query('Milano');
     }
 
-    public function testQueryWithInvalidPlace()
+    public function testQueryWithInvalidPlace(): void
     {
         $this->expectException(NoResults::class);
 
@@ -65,7 +65,7 @@ class SearchTest extends TestCase
         $this->search->query('questo è un indirizzo che non esiste');
     }
 
-    public function testQuery()
+    public function testQuery(): void
     {
         $this->service->
                 expects($this->once())->

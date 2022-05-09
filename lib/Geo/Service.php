@@ -7,6 +7,8 @@
 
 namespace Geo;
 
+use ArrayObject;
+
 /**
  * Service is the adapter for the external geo searching services
  *
@@ -26,22 +28,18 @@ abstract class Service
     protected $uri;
     protected $parameters = array();
 
-    /**
-     * @param string
-     * @return array
-     */
-    abstract protected function query($q);
+    abstract protected function query(string $q): array;
 
-    abstract protected function initLocation($values);
+    abstract protected function initLocation(array $values): Location;
 
-    private function hydrate($results)
+    private function hydrate(array $results): void
     {
         foreach ($results as $result) {
             $this->addResult($this->initLocation($result));
         }
     }
 
-    private function addResult(\Geo\Location $location)
+    private function addResult(\Geo\Location $location): void
     {
         $this->results->append($location);
     }
@@ -51,47 +49,47 @@ abstract class Service
         $this->results = new \ArrayObject();
     }
 
-    public function getResults()
+    public function getResults(): ArrayObject
     {
         return $this->results;
     }
 
-    public function setRegion($region)
+    public function setRegion(string $region): void
     {
         $this->region = $region;
     }
 
-    public function setLanguage($language)
+    public function setLanguage(string $language): void
     {
         $this->language = $language;
     }
 
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    public function getServiceResults()
+    public function getServiceResults(): array
     {
         return $this->service_results;
     }
 
-    public function getUri()
+    public function getUri(): string
     {
         return $this->uri;
     }
 
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->parameters;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function search($q)
+    public function search(string $q): void
     {
         $this->results->exchangeArray(array());
 

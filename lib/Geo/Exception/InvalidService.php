@@ -14,7 +14,7 @@ namespace Geo\Exception;
  * @subpackage exception
  * @author     Francesco Trucchia <francesco@trucchia.it>
  */
-class InvalidService extends \Exception
+final class InvalidService extends \Exception
 {
     
 }

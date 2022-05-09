@@ -6,8 +6,7 @@ Location object implements a method can calculate distance between two location.
 ``` php
 <?php
 
-$loader = new Geo\ClassLoader('Geo', dirname(__DIR__.'/../lib/Geo'));
-$loader->register();
+
 
 
 $search = new Search();
